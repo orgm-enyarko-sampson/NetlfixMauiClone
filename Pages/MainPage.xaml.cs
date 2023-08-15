@@ -1,21 +1,22 @@
 ﻿using Netflix_Clone.Services;
+using Netflix_Clone.ViewModels;
 
 namespace Netflix_Clone.Pages
 {
     public partial class MainPage : ContentPage
     {
-        private readonly TMDBService _tmdbService;
-
-        public MainPage(TMDBService tmdbService)
+        private readonly HomeViewModel _homeViewModel;
+        public MainPage(HomeViewModel homeViewModel)
         {
             InitializeComponent();
-            _tmdbService = tmdbService;
+            _homeViewModel = homeViewModel;
+            BindingContext = _homeViewModel;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var trending = await _tmdbService.GetTrendingAsync();
+           await _homeViewModel.InitializeAsync();
         }
     }
 }

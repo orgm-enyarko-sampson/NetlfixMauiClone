@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Netflix_Clone.Pages;
 using Netflix_Clone.Services;
+using Netflix_Clone.ViewModels;
 
 namespace Netflix_Clone
 {
@@ -25,7 +26,8 @@ namespace Netflix_Clone
 
             builder.Services.AddHttpClient(TMDBService.TmdbHttpClientName, HttpClient => HttpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
             builder.Services.AddSingleton<TMDBService>();
-            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<HomeViewModel>(); 
+            builder.Services.AddSingleton<MainPage>(); 
 
             return builder.Build();
         }
